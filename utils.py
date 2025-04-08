@@ -26,7 +26,7 @@ def measure_exec_time(
     return mean_ms, std_ms
 
 
-def set_seeds(seed: int):
+def set_seeds(seed: int = 100):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
