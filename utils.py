@@ -3,9 +3,8 @@ import statistics
 import time
 from typing import Callable
 
-import torch
-
 import numpy as np
+import torch
 
 
 def measure_exec_time(
