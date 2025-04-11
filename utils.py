@@ -3,13 +3,18 @@ import statistics
 import time
 from typing import Callable
 
-import numpy as np
 import torch
+
+import numpy as np
 
 
 def measure_exec_time(
-    func: Callable, *args, n: int = 100, verbose: bool = False
-) -> tuple[float, float]:
+    func: Callable,
+    *args,
+    n: int = 100,
+    verbose: bool = True,
+    return_result: bool = False,
+) -> tuple[float, float] | None:
     times = []
     for _ in range(n):
         start = time.perf_counter()
@@ -20,10 +25,12 @@ def measure_exec_time(
 
     mean_ms = statistics.mean(times)
     std_ms = statistics.stdev(times) if n > 1 else 0.0
+
     if verbose:
         print(f"Mean: {mean_ms:.3f} ms, Std: {std_ms:.3f} ms")
 
-    return mean_ms, std_ms
+    if return_result:
+        return mean_ms, std_ms
 
 
 def set_seeds(seed: int = 100):
